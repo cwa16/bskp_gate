@@ -42,6 +42,7 @@ Route::delete('/app-link-delete/{id}', [AppLinkController::class, 'delete'])->na
 
 // Activity Log
 Route::get('/activity-log', [ActivityLogController::class, 'index'])->name('activity-log-index');
+Route::get('/activity-log-detail/{id}', [ActivityLogController::class, 'detail'])->name('activity-log-detail');
 
 // User Account
 Route::get('/user-account', [UserController::class, 'index'])->name('user-account-index');

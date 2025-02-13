@@ -74,15 +74,10 @@ class AuthController extends Controller
                 toastr()->closeOnHover(true)->closeButton(10)->success('Login Berhasil!!!');
                 $token = JWTAuth::fromUser(Auth::user());
                 $user = Auth::user();
-                // dd($user);
+                $otp = $activeLogin->otp_code;
                 $request->session()->put('jwt_token', $token);
-                // $request->session()->put('nik', $token);
-                // $request->session()->put('name', $token);
-                // $request->session()->put('dept', $token);
-                // $request->session()->put('jabatan', $token);
-                // $request->session()->put('role', $token);
-                // dd(session('jwt_token'));
-                return redirect()->route('dashboard', ['token' => $token, 'user' => $user]);
+                $request->session()->put('otp', $otp);
+                return redirect()->route('dashboard', ['token' => $token, 'user' => $user, 'otp' => $otp]);
             }
 
             $pendingOtp = LogActivity::where('nik', $user->nik)
@@ -175,8 +170,6 @@ class AuthController extends Controller
         $addLogoutTime->update([
             'logout_at' => $dateTimeNow
         ]);
-
-        // dd(!$addLogoutTime);
 
         if ($addLogoutTime) {
             toastr()->closeOnHover(true)->closeDuration(10)->success('Anda telah berhasil logout, Silahkan Login Kembali!.');

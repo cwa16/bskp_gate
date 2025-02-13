@@ -22,4 +22,25 @@ class ActivityLogController extends Controller
             'logActs' => $logActs
         ]);
     }
+
+    public function detail($id)
+    {
+        $title = 'Activity Log - Detail';
+
+        $logActsDetails = DB::table('log_activity_details')
+            ->join('app_links', 'app_links.id', '=', 'log_activity_details.accessing_app')
+            ->join('log_activities', 'log_activities.id', '=', 'log_activity_details.activity_log_id')
+            ->select(
+                'app_links.name',
+                'log_activity_details.accessing_at',
+                'log_activity_details.accessing_until',
+            )
+            ->where('log_activities.id', $id)
+            ->get();
+
+        return view('activity-log.detail', [
+            'title' => $title,
+            'logActsDetails' => $logActsDetails
+        ]);
+    }
 }

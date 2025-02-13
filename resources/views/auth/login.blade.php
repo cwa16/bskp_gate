@@ -65,32 +65,11 @@
                     <a href="#" class="login__forgot">Forgot your password?</a>
 
                     <button type="submit" class="login__button">Get OTP Code</button>
-                    {{-- <a href="{{ route('otp.index') }}" class="login__button">Get OTP Code</a> --}}
                 </form>
 
-                {{-- <div class="login__social">
-                    <p class="login__social-title">Or login with</p>
-
-                    <div class="login__social-links">
-                        <a href="#" class="login__social-link">
-                            <img src="{{ asset('login/img/icon-google.svg') }}" alt="image"
-                                class="login__social-img">
-                        </a>
-
-                        <a href="#" class="login__social-link">
-                            <img src="{{ asset('login/img/icon-facebook.svg') }}" alt="image"
-                                class="login__social-img">
-                        </a>
-
-                        <a href="#" class="login__social-link">
-                            <img src="{{ asset('login/img/icon-apple.svg') }}" alt="image" class="login__social-img">
-                        </a>
-                    </div>
-                </div> --}}
-
                 <p class="login__switch">
-                    Don't have an account?
-                    <button id="loginButtonRegister">Create Account</button>
+                    Forgot your password?
+                    <button id="loginButtonRegister">Reset Password</button>
                 </p>
             </div>
         </div>

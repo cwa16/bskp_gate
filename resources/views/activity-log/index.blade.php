@@ -41,6 +41,7 @@
                                             <th>OTP Verified At</th>
                                             <th>Login Time</th>
                                             <th>Logout Time</th>
+                                            <th>Detail</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -51,11 +52,47 @@
                                                 <td>{{ $logAct->dept }}</td>
                                                 <td>{{ $logAct->ip_address }}</td>
                                                 <td>{{ $logAct->otp_code }}</td>
-                                                <td>{{ $logAct->otp_valid_start }}</td>
-                                                <td>{{ $logAct->otp_valid_until }}</td>
-                                                <td>{{ $logAct->otp_verified_at }}</td>
-                                                <td>{{ $logAct->login_at }}</td>
-                                                <td>{{ $logAct->logout_at }}</td>
+
+                                                @if ($logAct->otp_valid_start == null)
+                                                    <td>-</td>
+                                                @else
+                                                    <td>{{ \Carbon\Carbon::parse($logAct->otp_valid_start)->format('d-m-y h:i') }}
+                                                    </td>
+                                                @endif
+
+                                                @if ($logAct->otp_valid_until == null)
+                                                    <td>-</td>
+                                                @else
+                                                    <td>{{ \Carbon\Carbon::parse($logAct->otp_valid_until)->format('d-m-y h:i') }}
+                                                    </td>
+                                                @endif
+
+                                                @if ($logAct->otp_verified_at == null)
+                                                    <td>-</td>
+                                                @else
+                                                    <td>{{ \Carbon\Carbon::parse($logAct->otp_verified_at)->format('d-m-y h:i') }}
+                                                    </td>
+                                                @endif
+
+                                                @if ($logAct->login_at == null)
+                                                    <td>-</td>
+                                                @else
+                                                    <td>{{ \Carbon\Carbon::parse($logAct->login_at)->format('d-m-y h:i') }}
+                                                    </td>
+                                                @endif
+
+                                                @if ($logAct->logout_at == null)
+                                                    <td>-</td>
+                                                @else
+                                                    <td>{{ \Carbon\Carbon::parse($logAct->logout_at)->format('d-m-y h:i') }}
+                                                    </td>
+                                                @endif
+
+                                                <td><a href="{{ route('activity-log-detail', $logAct->id) }}"
+                                                        class="btn btn-primary btn-sm" target="_blank"><i
+                                                            class="fas fa-american-sign-language-interpreting"></i>
+                                                    </a>
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
